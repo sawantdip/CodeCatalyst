@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeCatalyst Chatbot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: black; /* Black background */
+            color: white; /* White text */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #121212;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1em;
+            padding: 10px 20px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #36d7b7;
+        }
+
+        iframe {
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1); /* Subtle white shadow */
+            width: 100%;
+            flex-grow: 1; /* Take remaining vertical space */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">CodeCatalyst</div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                {% endif %}
+                
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'learn' %}">Learn</a></li>
+                    <li><a href="{% url 'practice' %}">Practice</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Learn</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Embed the Streamlit chatbot -->
+    <iframe
+        src="http://localhost:8501?user_id={{ user.id }}"
+        height="800px">
+    </iframe>
+</body>
+</html>

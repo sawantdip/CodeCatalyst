@@ -1,0 +1,122 @@
+<!-- chatbot/templates/chatbot/about.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            color: #f0f0f0;
+            font-family: 'Arial', sans-serif;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1em;
+            padding: 10px 20px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #36d7b7;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #121212;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #151515;
+        }
+        .navbar a {
+            color: #f0f0f0;
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 16px;
+            padding: 10px 15px;
+            transition: background-color 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: #1d1d1d;
+            border-radius: 5px;
+        }
+        .header {
+            text-align: center;
+            padding: 80px;
+            background-color: #151515;
+        }
+        .header h1 {
+            color: #37F6EB;
+            font-size: 48px;
+        }
+        .header p {
+            font-size: 18px;
+            color: #aaa;
+        }
+        .content {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .content h2 {
+            font-size: 28px;
+            color: #37F6EB;
+            margin-bottom: 20px;
+        }
+        .content p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">CodeCatalyst</div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                {% endif %}
+                <li><a href="{% url 'learn' %}">Learn</a></li>
+                <li><a href="{% url 'practice' %}">Practice</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="header">
+        <h1>About CodeCatalyst</h1>
+        <p>Empowering coders to learn, practice, and grow their skills.</p>
+    </div>
+    <div class="content">
+        <h2>Our Mission</h2>
+        <p>CodeCatalyst is dedicated to providing a platform for beginner and intermediate coders to enhance their coding skills through real-time guidance and hands-on practice. Whether you're just starting or refining your skills, we offer an interactive learning experience with tailored coding prompts in Python, Java, and C.</p>
+        
+        <h2>Why CodeCatalyst?</h2>
+        <p>We believe that coding should be accessible to everyone. Our chatbot, integrated with Groq's LLaMA model, delivers personalized learning, ensuring that each user can learn at their own pace. With built-in functionality for coding prompts and detailed explanations, CodeCatalyst bridges the gap between theory and practical application.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,151 @@
+{% load static %}  <!-- Load the static template tag library -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - CodeCatalyst</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #121212;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1em;
+            padding: 10px 20px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #36d7b7;
+        }
+
+        .hero-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 100px;
+            background-color: #0f0f0f;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5em;
+            line-height: 1.2;
+        }
+
+        .hero-section h1 span {
+            color: #36d7b7;
+        }
+
+        .hero-section p {
+            font-size: 1.2em;
+            margin-top: 20px;
+            max-width: 600px;
+        }
+
+        .cta-buttons {
+            margin-top: 30px;
+        }
+
+        .cta-buttons a {
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            background-color: #36d7b7;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            margin-right: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-buttons a:hover {
+            background-color: #2bb593;
+        }
+        .responsive-img {
+            max-width: 100%; /* Scale down to fit the container */
+            height: auto; /* Maintain aspect ratio */
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">CodeCatalyst</div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                {% endif %}
+                
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'learn' %}">Learn</a></li>
+                    <li><a href="{% url 'practice' %}">Practice</a></li>
+
+                {% else %}
+                    <li><a href="{% url 'login' %}">Learn</a></li>
+                    <li><a href="{% url 'login' %}">Practice</a></li>  
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-section">
+        <div>
+            <h1>Great <span>Code</span> is the language we speak</h1>
+            <p>Welcome to CodeCatalyst! Start your coding journey by learning, practicing, and exploring the world of programming. Our platform is here to help you enhance your coding skills through guided lessons and hands-on practice.</p>
+            <div class="cta-buttons">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'learn' %}">Get Started</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Get Started</a>
+                {% endif %}
+                <a href="{% url 'about' %}">Learn More</a>
+            </div>
+        </div>
+        <div>
+            <img src="{% static 'images/code.jpg' %}" alt="Code Image" class="responsive-img" style="width: 400px; height: auto;">
+        </div>
+    </section>
+</body>
+</html>
