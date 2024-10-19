@@ -4,3 +4,4 @@ groq==1.0.0  # Replace with the actual version you're using for the Groq library
 datetime  # Part of Python's standard library, not needed in requirements.txt.
 os  # Part of Python's standard library, not needed in requirements.txt.
 json  # Part of Python's standard library, not needed in requirements.txt.
+django
